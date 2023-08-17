@@ -9,9 +9,9 @@
   <title>Weather App</title>
 </head>
 
-<body class="bg-darkblue">
+<body>
   <main class="container">
-    <section class="left">
+    <section class="left w-screen bg-darkblue">
       <section class="btn flex justify-between items-center h-16 p-2">
         <button class="search-btn bg-gray text-white text-xs p-2">Search for places</button>
         <div class="bg-gray rounded-full p-2">
@@ -31,9 +31,53 @@
             16 Aug</span>
         </p>
       </section>
-      <section class="location flex justify-center items-center mt-4">
+      <section class="location flex justify-center items-center p-4">
         <i class="fa-solid fa-location-pin mr-2" style="color: #626471;"></i>
         <p class="current-location text-white opacity-50 font-semibold">Helsinki</p>
+      </section>
+    </section>
+    <section class="right bg-extradarkblue w-screen">
+      <section class="forecast-container grid grid-cols-2 place-items-center gap-0 p-6">
+        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10">
+          <p class="date text-white text-sm opacity-80">Tomorrow</p>
+          <img src="../images/Sleet.png" class="w-12 my-6" alt="Sleet Icon">
+          <div class="temp-forecast flex justify-between w-full">
+            <p class="max text-white text-xs opacity-80">16&deg;C</p>
+            <p class="min text-white text-xs opacity-50">11&deg;C</p>
+          </div>
+        </div>
+        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10">
+          <p class="date text-white text-sm opacity-80">Sun, 7 Jun</p>
+          <img src="../images/Sleet.png" class="w-12 my-6" alt="Sleet Icon">
+          <div class="temp-forecast flex justify-between w-full">
+            <p class="max text-white text-xs opacity-80">16&deg;C</p>
+            <p class="min text-white text-xs opacity-50">11&deg;C</p>
+          </div>
+        </div>
+        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10">
+          <p class="date text-white text-sm opacity-80">Mon, 8 Jun</p>
+          <img src="../images/Thunderstorm.png" class="w-12 my-6" alt="Sleet Icon">
+          <div class="temp-forecast flex justify-between w-full">
+            <p class="max text-white text-xs opacity-80">16&deg;C</p>
+            <p class="min text-white text-xs opacity-50">11&deg;C</p>
+          </div>
+        </div>
+        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10">
+          <p class="date text-white text-sm opacity-80">Tue, 9 Jun</p>
+          <img src="../images/LightCloud.png" class="w-12 my-6" alt="Sleet Icon">
+          <div class="temp-forecast flex justify-between w-full">
+            <p class="max text-white text-xs opacity-80">16&deg;C</p>
+            <p class="min text-white text-xs opacity-50">11&deg;C</p>
+          </div>
+        </div>
+        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10">
+          <p class="date text-white text-sm opacity-80">Wed, 10 Jun</p>
+          <img src="../images/HeavyRain.png" class="w-12 my-6" alt="Sleet Icon">
+          <div class="temp-forecast flex justify-between w-full">
+            <p class="max text-white text-xs opacity-80">16&deg;C</p>
+            <p class="min text-white text-xs opacity-50">11&deg;C</p>
+          </div>
+        </div>
       </section>
     </section>
   </main>
