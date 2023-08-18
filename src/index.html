@@ -9,36 +9,37 @@
   <title>Weather App</title>
 </head>
 
-<body>
+<body class="bg-extradarkblue">
   <main class="container">
     <section class="left w-screen bg-darkblue">
-      <section class="btn flex justify-between items-center h-16 p-2">
-        <button class="search-btn bg-gray text-white text-xs p-2">Search for places</button>
-        <div class="bg-gray rounded-full p-2">
-          <img src="../images/location.svg" class="w-4 fill-white" alt="">
+      <section class="btn flex justify-between items-center h-16 p-2 md:p-6">
+        <button class="search-btn bg-gray text-white text-xs p-2 md:text-lg md:p-4 md:w-48 md:mt-4">Search for
+          places</button>
+        <div class="bg-gray rounded-full p-2 md:p-4 md:mt-4">
+          <img src="../images/location.svg" class="w-4 fill-white md:w-6" alt="">
         </div>
       </section>
       <section
-        class="weather-icon w-screen h-96 bg-bg-clouds bg-cover bg-center bg-no-repeat flex justify-center items-center">
+        class="weather-icon w-screen h-96 bg-bg-clouds bg-cover bg-center bg-no-repeat flex justify-center items-center md:h-[900px]">
         <img src="../images/Shower.png" class="" alt="Shower Icon">
       </section>
       <section class="temp">
-        <h3 class="text-white text-center text-7xl font-semibold opacity-90">15<span
-            class="text-5xl text-gray">&deg;C</span></h3>
-        <p class="status text-3xl text-white opacity-50 text-center my-4">Shower</p>
-        <p class="date text-sm text-white opacity-50 text-center">Today<span class="font-bold"> - </span><span
-            class="current-date">Wed,
+        <h3 class="text-white text-center text-7xl font-semibold opacity-90 md:text-9xl">15<span
+            class="text-5xl text-gray md:text-7xl">&deg;C</span></h3>
+        <p class="status text-3xl text-white opacity-50 text-center my-4 md:text-4xl">Shower</p>
+        <p class="date text-sm text-white opacity-50 text-center md:text-lg">Today<span class="font-bold"> -
+          </span><span class="current-date">Wed,
             16 Aug</span>
         </p>
       </section>
-      <section class="location flex justify-center items-center p-4">
+      <section class="location flex justify-center items-center p-4 md:mb-6">
         <i class="fa-solid fa-location-pin mr-2" style="color: #626471;"></i>
-        <p class="current-location text-white opacity-50 font-semibold">Helsinki</p>
+        <p class="current-location text-white opacity-50 font-semibold md:text-lg">Helsinki</p>
       </section>
     </section>
-    <section class="right bg-extradarkblue w-screen">
-      <section class="forecast-container grid grid-cols-2 place-items-center gap-0 p-6">
-        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10">
+    <section class="right w-screen">
+      <section class="forecast-container grid grid-cols-2 place-items-center gap-0 p-6 md:grid-cols-5">
+        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10 md:w-32">
           <p class="date text-white text-sm opacity-80">Tomorrow</p>
           <img src="../images/Sleet.png" class="w-12 my-6" alt="Sleet Icon">
           <div class="temp-forecast flex justify-between w-full">
@@ -46,7 +47,7 @@
             <p class="min text-white text-xs opacity-50">11&deg;C</p>
           </div>
         </div>
-        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10">
+        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10 md:w-32">
           <p class="date text-white text-sm opacity-80">Sun, 7 Jun</p>
           <img src="../images/Sleet.png" class="w-12 my-6" alt="Sleet Icon">
           <div class="temp-forecast flex justify-between w-full">
@@ -54,7 +55,7 @@
             <p class="min text-white text-xs opacity-50">11&deg;C</p>
           </div>
         </div>
-        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10">
+        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10 md:w-32">
           <p class="date text-white text-sm opacity-80">Mon, 8 Jun</p>
           <img src="../images/Thunderstorm.png" class="w-12 my-6" alt="Sleet Icon">
           <div class="temp-forecast flex justify-between w-full">
@@ -62,7 +63,7 @@
             <p class="min text-white text-xs opacity-50">11&deg;C</p>
           </div>
         </div>
-        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10">
+        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10 md:w-32">
           <p class="date text-white text-sm opacity-80">Tue, 9 Jun</p>
           <img src="../images/LightCloud.png" class="w-12 my-6" alt="Sleet Icon">
           <div class="temp-forecast flex justify-between w-full">
@@ -70,7 +71,7 @@
             <p class="min text-white text-xs opacity-50">11&deg;C</p>
           </div>
         </div>
-        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10">
+        <div class="forecast-card w-28 h-44 p-3 flex flex-col items-center justify-between bg-darkblue mb-10 md:w-32">
           <p class="date text-white text-sm opacity-80">Wed, 10 Jun</p>
           <img src="../images/HeavyRain.png" class="w-12 my-6" alt="Sleet Icon">
           <div class="temp-forecast flex justify-between w-full">
@@ -80,27 +81,31 @@
         </div>
       </section>
       <section class="highlights">
-        <h3 class="text-white ml-8 font-semibold">Today's Highlights</h3>
+        <h3 class="text-white ml-8 font-semibold md:ml-16 md:text-xl">Today's Highlights</h3>
         <div class="highlight-container flex flex-col items-center">
           <div class="highlight-box bg-darkblue w-10/12 my-5 p-2">
-            <p class="wind-status text-white text-sm text-center mt-4 mb-6">Wind Status</p>
-            <p class="text-white text-center font-semibold mb-3"><span class="wind-speed text-3xl font-bold">7</span>
+            <p class="wind-status text-white text-sm text-center mt-4 mb-6 md:text-xl">Wind Status</p>
+            <p class="text-white text-center font-semibold mb-3 md:text-2xl"><span
+                class="wind-speed text-3xl font-bold md:text-5xl">7</span>
               mph</p>
           </div>
           <div class="highlight-box bg-darkblue w-10/12 mb-5">
-            <p class="wind-status text-white text-sm text-center mt-4 mb-6">Humidity</p>
-            <p class="text-white text-center font-semibold mb-3"><span class="wind-speed text-3xl font-bold">84</span> %
+            <p class="wind-status text-white text-sm text-center mt-4 mb-6 md:text-xl">Humidity</p>
+            <p class="text-white text-center font-semibold mb-3 md:text-2xl"><span
+                class="wind-speed text-3xl font-bold md:text-5xl">84</span> %
             </p>
           </div>
           <div class="highlight-box bg-darkblue w-10/12 mb-5">
-            <p class="wind-status text-white text-sm text-center mt-4 mb-6">Visibility</p>
-            <p class="text-white text-center font-semibold mb-3"><span class="wind-speed text-3xl font-bold">6.4</span>
+            <p class="wind-status text-white text-sm text-center mt-4 mb-6 md:text-xl">Visibility</p>
+            <p class="text-white text-center font-semibold mb-3 md:text-2xl"><span
+                class="wind-speed text-3xl font-bold md:text-5xl">6.4</span>
               miles
             </p>
           </div>
           <div class="highlight-box bg-darkblue w-10/12 mb-5">
-            <p class="wind-status text-white text-sm text-center mt-4 mb-6">Air Pressure</p>
-            <p class="text-white text-center font-semibold mb-3"><span class="wind-speed text-3xl font-bold">998</span>
+            <p class="wind-status text-white text-sm text-center mt-4 mb-6 md:text-xl">Air Pressure</p>
+            <p class="text-white text-center font-semibold mb-3 md:text-2xl"><span
+                class="wind-speed text-3xl font-bold md:text-5xl">998</span>
               mb
             </p>
           </div>
