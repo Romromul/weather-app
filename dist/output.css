@@ -675,13 +675,6 @@ video {
   height: 6rem;
 }
 
-.h-28 {
-  height: 7rem;
-}
-
-.h-32 {
-  height: 8rem;
-}
 
 .w-12 {
   width: 3rem;
@@ -870,4 +863,3 @@ video {
 
 .opacity-90 {
   opacity: 0.9;
-}
