@@ -31,6 +31,7 @@ const minTemp2 = document.querySelector('.min-2');
 const minTemp3 = document.querySelector('.min-3');
 const minTemp4 = document.querySelector('.min-4');
 const minTemp5 = document.querySelector('.min-5');
+const locationButton = document.querySelector('.location-btn');
 
 currentDay.innerText = daysArray[date.getDay()];
 currentDate.innerText = date.getDate();
@@ -40,6 +41,7 @@ let latitude = null;
 let longitude = null;
 
 // Check if geolocation is available in the browser
+locationButton.addEventListener('click', function() {
 if ("geolocation" in navigator) {
     // Get current position
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -87,3 +89,4 @@ if ("geolocation" in navigator) {
 } else {
     console.log("Please Allow Location Permissions");
 }
+});
