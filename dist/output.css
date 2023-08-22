@@ -685,7 +685,7 @@ video {
 }
 
 .bg-bg-clouds {
-  background-image: url('/images/Cloud-background.png');
+  background-image: url('../images/Cloud-background.png');
 }
 
 .bg-cover {
