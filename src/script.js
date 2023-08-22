@@ -1,6 +1,7 @@
 const date = new Date();
 const daysArray = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
 const monthsArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+const icon = document.querySelector('.icon');
 const currentTemp = document.querySelector('.current-temp');
 const currentStatus = document.querySelector('.status');
 const currentDay = document.querySelector('.current-day');
@@ -34,6 +35,7 @@ if ("geolocation" in navigator) {
     .then((response) => response.json())
     .then((response) => {
         console.log(response);
+        icon.src = response.current.condition.icon;
         currentTemp.innerText = response.current.temp_c;
         currentStatus.innerText = response.current.condition.text;
         currentLocation.innerText = response.location.name;
