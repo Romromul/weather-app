@@ -62,10 +62,10 @@ if ("geolocation" in navigator) {
         humidity.innerText = response.current.humidity;
         visibility.innerText = response.current.vis_km;
         airPressure.innerText = response.current.pressure_mb;
-        date2.innerText = `${daysArray[date.getDay() + 2]}, ${date.getDate() + 2} ${monthsArray[date.getMonth()]}`;
-        date3.innerText = `${daysArray[date.getDay() + 3]}, ${date.getDate() + 3} ${monthsArray[date.getMonth()]}`;
-        date4.innerText = `${daysArray[date.getDay() + 4]}, ${date.getDate() + 4} ${monthsArray[date.getMonth()]}`;
-        date5.innerText = `${daysArray[date.getDay() + 5]}, ${date.getDate() + 5} ${monthsArray[date.getMonth()]}`;
+        date2.innerText = `${daysArray[(date.getDay() + 2) % 7]}, ${date.getDate() + 2} ${monthsArray[date.getMonth()]}`;
+        date3.innerText = `${daysArray[(date.getDay() + 3) % 7]}, ${date.getDate() + 3} ${monthsArray[date.getMonth()]}`;
+        date4.innerText = `${daysArray[(date.getDay() + 4) % 7]}, ${date.getDate() + 4} ${monthsArray[date.getMonth()]}`;
+        date5.innerText = `${daysArray[(date.getDay() + 5) % 7]}, ${date.getDate() + 5} ${monthsArray[date.getMonth()]}`;
         forecastIcon1.src = response.forecast.forecastday[1].day.condition.icon;
         forecastIcon2.src = response.forecast.forecastday[2].day.condition.icon;
         forecastIcon3.src = response.forecast.forecastday[3].day.condition.icon;
