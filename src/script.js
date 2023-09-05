@@ -52,9 +52,10 @@ currentMonth.innerText = monthsArray[date.getMonth()];
 
 let latitude = null;
 let longitude = null;
+let cityName = null;
 
-const API_Call = async (latitude, longitude) => {
-  const API_URL = 'https://openweather43.p.rapidapi.com/forecast?q=lahore&units=metric';
+const getWeatherData = async (city) => {
+  let API_URL = `https://openweather43.p.rapidapi.com/forecast?q=${city}&units=metric`;
   const options = {
     method: 'GET',
     headers: {
@@ -62,12 +63,8 @@ const API_Call = async (latitude, longitude) => {
       'X-RapidAPI-Host': 'openweather43.p.rapidapi.com'
     }
   };
-  // return fetch(API_URL)
-  //   .then((response) => response.json())
-  //   .catch(() => alert("Error fetching weather data"));
   try {
     const response = await fetch(API_URL, options)
-
     const data = await response.json();
     return data
   }
@@ -76,6 +73,18 @@ const API_Call = async (latitude, longitude) => {
   }
 
 };
+
+const getLocationName = async (latitude, longitude) => {
+  let API_URL = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+    return data;
+  }
+  catch (error) {
+    console.log("Can't get location information, ", error);
+  }
+}
 
 const getLocationCoordinates = async () => {
   if ("geolocation" in navigator) {
@@ -87,16 +96,19 @@ const getLocationCoordinates = async () => {
       latitude = position.coords.latitude;
       longitude = position.coords.longitude;
 
-      const response = await API_Call(latitude, longitude);
-      console.log(response);
+      const getCityName = await getLocationName(latitude, longitude);
+      cityName = getCityName.city.toLowerCase();
+
+      const weatherData = await getWeatherData(cityName);
+      // console.log(weatherData);
       // icon.src = response.current.condition.icon;
-      currentTemp.innerText = Math.ceil(response.list[0].main.temp);
-      currentStatus.innerText = response.list[0].weather[0].main;
-      // currentLocation.innerText = response.location.name;
-      windSpeed.innerText = Math.ceil(response.list[0].wind.speed);
-      humidity.innerText = response.list[0].main.humidity;
-      visibility.innerText = response.list[0].visibility / 1000;
-      airPressure.innerText = response.list[0].main.pressure;
+      currentTemp.innerText = Math.ceil(weatherData.list[0].main.temp);
+      currentStatus.innerText = weatherData.list[0].weather[0].main;
+      currentLocation.innerText = weatherData.city.name;
+      windSpeed.innerText = Math.ceil(weatherData.list[0].wind.speed);
+      humidity.innerText = weatherData.list[0].main.humidity;
+      visibility.innerText = weatherData.list[0].visibility / 1000;
+      airPressure.innerText = weatherData.list[0].main.pressure;
       date2.innerText = `${daysArray[(date.getDay() + 2) % 7]}, ${date.getDate() + 2
         } ${monthsArray[date.getMonth()]}`;
       date3.innerText = `${daysArray[(date.getDay() + 3) % 7]}, ${date.getDate() + 3
@@ -110,16 +122,16 @@ const getLocationCoordinates = async () => {
       // forecastIcon3.src = response.forecast.forecastday[3].day.condition.icon;
       // forecastIcon4.src = response.forecast.forecastday[4].day.condition.icon;
       // forecastIcon5.src = response.forecast.forecastday[5].day.condition.icon;
-      maxTemp1.innerText = Math.ceil(response.list[1].main.temp_max);
-      maxTemp2.innerText = Math.ceil(response.list[2].main.temp_max);
-      maxTemp3.innerText = Math.ceil(response.list[3].main.temp_max);
-      maxTemp4.innerText = Math.ceil(response.list[4].main.temp_max);
-      maxTemp5.innerText = Math.ceil(response.list[5].main.temp_max);
-      minTemp1.innerText = Math.ceil(response.list[1].main.temp_min);
-      minTemp2.innerText = Math.ceil(response.list[2].main.temp_min);
-      minTemp3.innerText = Math.ceil(response.list[3].main.temp_min);
-      minTemp4.innerText = Math.ceil(response.list[4].main.temp_min);
-      minTemp5.innerText = Math.ceil(response.list[5].main.temp_min);
+      maxTemp1.innerText = Math.ceil(weatherData.list[1].main.temp_max);
+      maxTemp2.innerText = Math.ceil(weatherData.list[2].main.temp_max);
+      maxTemp3.innerText = Math.ceil(weatherData.list[3].main.temp_max);
+      maxTemp4.innerText = Math.ceil(weatherData.list[4].main.temp_max);
+      maxTemp5.innerText = Math.ceil(weatherData.list[5].main.temp_max);
+      minTemp1.innerText = Math.round(weatherData.list[1].main.temp_min);
+      minTemp2.innerText = Math.round(weatherData.list[2].main.temp_min);
+      minTemp3.innerText = Math.round(weatherData.list[3].main.temp_min);
+      minTemp4.innerText = Math.round(weatherData.list[4].main.temp_min);
+      minTemp5.innerText = Math.round(weatherData.list[5].main.temp_min);
     }
     catch (error) {
       console.log(`Error: ${error}`);
