@@ -100,8 +100,8 @@ const getLocationCoordinates = async () => {
       cityName = getCityName.city.toLowerCase();
 
       const weatherData = await getWeatherData(cityName);
-      // console.log(weatherData);
-      // icon.src = response.current.condition.icon;
+      console.log(weatherData);
+      icon.src = `https://openweathermap.org/img/wn/${weatherData.list[0].weather[0].icon}.png`;
       currentTemp.innerText = Math.ceil(weatherData.list[0].main.temp);
       currentStatus.innerText = weatherData.list[0].weather[0].main;
       currentLocation.innerText = weatherData.city.name;
@@ -117,11 +117,11 @@ const getLocationCoordinates = async () => {
         } ${monthsArray[date.getMonth()]}`;
       date5.innerText = `${daysArray[(date.getDay() + 5) % 7]}, ${date.getDate() + 5
         } ${monthsArray[date.getMonth()]}`;
-      // forecastIcon1.src = response.forecast.forecastday[1].day.condition.icon;
-      // forecastIcon2.src = response.forecast.forecastday[2].day.condition.icon;
-      // forecastIcon3.src = response.forecast.forecastday[3].day.condition.icon;
-      // forecastIcon4.src = response.forecast.forecastday[4].day.condition.icon;
-      // forecastIcon5.src = response.forecast.forecastday[5].day.condition.icon;
+      forecastIcon1.src = `https://openweathermap.org/img/wn/${weatherData.list[1].weather[0].icon}.png`;
+      forecastIcon2.src = `https://openweathermap.org/img/wn/${weatherData.list[2].weather[0].icon}.png`;
+      forecastIcon3.src = `https://openweathermap.org/img/wn/${weatherData.list[3].weather[0].icon}.png`;
+      forecastIcon4.src = `https://openweathermap.org/img/wn/${weatherData.list[4].weather[0].icon}.png`;
+      forecastIcon5.src = `https://openweathermap.org/img/wn/${weatherData.list[5].weather[0].icon}.png`;
       maxTemp1.innerText = Math.ceil(weatherData.list[1].main.temp_max);
       maxTemp2.innerText = Math.ceil(weatherData.list[2].main.temp_max);
       maxTemp3.innerText = Math.ceil(weatherData.list[3].main.temp_max);
