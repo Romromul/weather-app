@@ -45,7 +45,7 @@ let latitude = null;
 let longitude = null;
 
 const getWeatherData = async () => {
-  let API_URL = `http://api.weatherapi.com/v1/forecast.json?key=afd1118f873b47bf99d170312231508&q=${latitude},${longitude}&days=3&aqi=no&alerts=no`;
+  let API_URL = `https://api.weatherapi.com/v1/forecast.json?key=afd1118f873b47bf99d170312231508&q=${latitude},${longitude}&days=3&aqi=no&alerts=no`;
   const options = {
     method: 'GET',
     headers: {
