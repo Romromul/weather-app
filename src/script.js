@@ -14,7 +14,7 @@ const monthsArray = [
   "Nov",
   "Dec",
 ];
-const icon = document.querySelector(".icon");
+const mainIcon = document.querySelector(".main-icon");
 const currentTemp = document.querySelector(".current-temp");
 const currentStatus = document.querySelector(".status");
 const currentDay = document.querySelector(".current-day");
@@ -29,21 +29,12 @@ const date2 = document.querySelector(".date-2");
 const date3 = document.querySelector(".date-3");
 const date4 = document.querySelector(".date-4");
 const date5 = document.querySelector(".date-5");
-const forecastIcon1 = document.querySelector(".icon-1");
-const forecastIcon2 = document.querySelector(".icon-2");
-const forecastIcon3 = document.querySelector(".icon-3");
-const forecastIcon4 = document.querySelector(".icon-4");
-const forecastIcon5 = document.querySelector(".icon-5");
+const forecastIcon1 = document.querySelector(".tomorrow-icon");
+const forecastIcon2 = document.querySelector(".day-after-tomorrow-icon");
 const maxTemp1 = document.querySelector(".max-1");
 const maxTemp2 = document.querySelector(".max-2");
-const maxTemp3 = document.querySelector(".max-3");
-const maxTemp4 = document.querySelector(".max-4");
-const maxTemp5 = document.querySelector(".max-5");
 const minTemp1 = document.querySelector(".min-1");
 const minTemp2 = document.querySelector(".min-2");
-const minTemp3 = document.querySelector(".min-3");
-const minTemp4 = document.querySelector(".min-4");
-const minTemp5 = document.querySelector(".min-5");
 const locationButton = document.querySelector(".location-btn");
 
 currentDay.innerText = daysArray[date.getDay()];
@@ -52,10 +43,9 @@ currentMonth.innerText = monthsArray[date.getMonth()];
 
 let latitude = null;
 let longitude = null;
-let cityName = null;
 
 const getWeatherData = async (city) => {
-  let API_URL = `https://openweather43.p.rapidapi.com/forecast?q=${city}&units=metric`;
+  let API_URL = `http://api.weatherapi.com/v1/forecast.json?key=afd1118f873b47bf99d170312231508&q=${latitude},${longitude}&days=3&aqi=no&alerts=no`;
   const options = {
     method: 'GET',
     headers: {
@@ -74,15 +64,154 @@ const getWeatherData = async (city) => {
 
 };
 
-const getLocationName = async (latitude, longitude) => {
-  let API_URL = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
-  try {
-    const response = await fetch(API_URL);
-    const data = await response.json();
-    return data;
-  }
-  catch (error) {
-    console.log("Can't get location information, ", error);
+const getWeatherIcon = (iconCode, isDay) => {
+  switch (iconCode) {
+    case 1000:
+      if (iconCode === 1000 && isDay === 1)
+        return 'wi-yahoo-32'
+      else
+        return 'wi-yahoo-31'
+
+    case 1003:
+      return 'wi-yahoo-28'
+
+    case 1006:
+      return 'wi-yahoo-26'
+
+    case 1009:
+      return 'wi-yahoo-26'
+
+    case 1030:
+      return 'wi-yahoo-20'
+
+    case 1063:
+      return 'wi-yahoo-35'
+
+    case 1066:
+      return 'wi-yahoo-13'
+
+    case 1069:
+      return 'wi-sleet'
+
+    case 1072:
+      return 'wi-yahoo-9'
+
+    case 1087:
+      return 'wi-yahoo-3'
+
+    case 1114:
+      return 'wi-yahoo-15'
+
+    case 1117:
+      return 'wi-yahoo-43'
+
+    case 1135:
+      return 'wi-yahoo-20'
+
+    case 1147:
+      return 'wi-yahoo-20'
+
+    case 1150:
+      return 'wi-yahoo-11'
+
+    case 1153:
+      return 'wi-yahoo-11'
+
+    case 1168:
+      return 'wi-yahoo-11'
+
+    case 1171:
+      return 'wi-yahoo-11'
+
+    case 1180:
+      return 'wi-yahoo-11'
+
+    case 1183:
+      return 'wi-yahoo-11'
+
+    case 1186:
+      return 'wi-yahoo-11'
+
+    case 1189:
+      return 'wi-yahoo-11'
+
+    case 1192:
+      return 'wi-yahoo-11'
+
+    case 1195:
+      return 'wi-yahoo-11'
+
+    case 1198:
+      return 'wi-yahoo-11'
+
+    case 1201:
+      return 'wi-yahoo-11'
+
+    case 1204:
+      return 'wi-sleet'
+
+    case 1207:
+      return 'wi-sleet'
+
+    case 1210:
+      return 'wi-yahoo-13'
+
+    case 1213:
+      return 'wi-yahoo-13'
+
+    case 1216:
+      return 'wi-yahoo-13'
+
+    case 1219:
+      return 'wi-yahoo-13'
+
+    case 1222:
+      return 'wi-yahoo-13'
+
+    case 1225:
+      return 'wi-yahoo-13'
+
+    case 1237:
+      return 'wi-yahoo-13'
+
+    case 1240:
+      return 'wi-yahoo-13'
+
+    case 1243:
+      return 'wi-yahoo-13'
+
+    case 1246:
+      return 'wi-yahoo-13'
+
+    case 1249:
+      return 'wi-yahoo-13'
+
+    case 1252:
+      return 'wi-yahoo-13'
+
+    case 1255:
+      return 'wi-yahoo-25'
+
+    case 1258:
+      return 'wi-yahoo-25'
+
+    case 1261:
+      return 'wi-yahoo-25'
+
+    case 1264:
+      return 'wi-yahoo-25'
+
+    case 1273:
+      return 'wi-yahoo-3'
+
+    case 1276:
+      return 'wi-yahoo-3'
+
+    case 1279:
+      return 'wi-yahoo-46'
+
+    case 1282:
+      return 'wi-yahoo-46'
   }
 }
 
@@ -96,42 +225,24 @@ const getLocationCoordinates = async () => {
       latitude = position.coords.latitude;
       longitude = position.coords.longitude;
 
-      const getCityName = await getLocationName(latitude, longitude);
-      cityName = getCityName.city.toLowerCase();
-
-      const weatherData = await getWeatherData(cityName);
+      const weatherData = await getWeatherData();
       console.log(weatherData);
-      icon.src = `https://openweathermap.org/img/wn/${weatherData.list[0].weather[0].icon}.png`;
-      currentTemp.innerText = Math.ceil(weatherData.list[0].main.temp);
-      currentStatus.innerText = weatherData.list[0].weather[0].main;
-      currentLocation.innerText = weatherData.city.name;
-      windSpeed.innerText = Math.ceil(weatherData.list[0].wind.speed);
-      humidity.innerText = weatherData.list[0].main.humidity;
-      visibility.innerText = weatherData.list[0].visibility / 1000;
-      airPressure.innerText = weatherData.list[0].main.pressure;
+      mainIcon.classList.add(getWeatherIcon(weatherData.current.condition.code, weatherData.current.is_day), 'text-white');
+      currentTemp.innerText = weatherData.current.temp_c;
+      currentStatus.innerText = weatherData.current.condition.text;
+      currentLocation.innerText = weatherData.location.name;
+      windSpeed.innerText = weatherData.current.wind_kph;
+      humidity.innerText = weatherData.current.humidity;
+      visibility.innerText = weatherData.current.vis_km;
+      airPressure.innerText = weatherData.current.pressure_mb;
       date2.innerText = `${daysArray[(date.getDay() + 2) % 7]}, ${date.getDate() + 2
         } ${monthsArray[date.getMonth()]}`;
-      date3.innerText = `${daysArray[(date.getDay() + 3) % 7]}, ${date.getDate() + 3
-        } ${monthsArray[date.getMonth()]}`;
-      date4.innerText = `${daysArray[(date.getDay() + 4) % 7]}, ${date.getDate() + 4
-        } ${monthsArray[date.getMonth()]}`;
-      date5.innerText = `${daysArray[(date.getDay() + 5) % 7]}, ${date.getDate() + 5
-        } ${monthsArray[date.getMonth()]}`;
-      forecastIcon1.src = `https://openweathermap.org/img/wn/${weatherData.list[1].weather[0].icon}.png`;
-      forecastIcon2.src = `https://openweathermap.org/img/wn/${weatherData.list[2].weather[0].icon}.png`;
-      forecastIcon3.src = `https://openweathermap.org/img/wn/${weatherData.list[3].weather[0].icon}.png`;
-      forecastIcon4.src = `https://openweathermap.org/img/wn/${weatherData.list[4].weather[0].icon}.png`;
-      forecastIcon5.src = `https://openweathermap.org/img/wn/${weatherData.list[5].weather[0].icon}.png`;
-      maxTemp1.innerText = Math.ceil(weatherData.list[1].main.temp_max);
-      maxTemp2.innerText = Math.ceil(weatherData.list[2].main.temp_max);
-      maxTemp3.innerText = Math.ceil(weatherData.list[3].main.temp_max);
-      maxTemp4.innerText = Math.ceil(weatherData.list[4].main.temp_max);
-      maxTemp5.innerText = Math.ceil(weatherData.list[5].main.temp_max);
-      minTemp1.innerText = Math.round(weatherData.list[1].main.temp_min);
-      minTemp2.innerText = Math.round(weatherData.list[2].main.temp_min);
-      minTemp3.innerText = Math.round(weatherData.list[3].main.temp_min);
-      minTemp4.innerText = Math.round(weatherData.list[4].main.temp_min);
-      minTemp5.innerText = Math.round(weatherData.list[5].main.temp_min);
+      forecastIcon1.classList.add(getWeatherIcon(weatherData.forecast.forecastday[1].day.condition.code, 1), 'text-white');
+      forecastIcon2.classList.add(getWeatherIcon(weatherData.forecast.forecastday[2].day.condition.code, 1), 'text-white');
+      maxTemp1.innerText = weatherData.forecast.forecastday[1].day.maxtemp_c;
+      maxTemp2.innerText = weatherData.forecast.forecastday[2].day.maxtemp_c;
+      minTemp1.innerText = weatherData.forecast.forecastday[1].day.mintemp_c;
+      minTemp2.innerText = weatherData.forecast.forecastday[2].day.mintemp_c;
     }
     catch (error) {
       console.log(`Error: ${error}`);
